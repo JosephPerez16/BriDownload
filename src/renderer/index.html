@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BriDownload</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">B</div>
+        <div>
+          <strong>BriDownload</strong>
+          <span>Desktop Media Tool</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="home">
+          <span>⌂</span> Inicio
+        </button>
+        <button class="nav-item" data-view="history">
+          <span>◷</span> Historial
+        </button>
+        <button class="nav-item" data-view="settings">
+          <span>⚙</span> Ajustes
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-dot"></div>
+        <span>Aplicación local</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">BriDownload</span>
+          <h1 id="pageTitle">Nueva descarga</h1>
+        </div>
+        <div class="window-badge">v1.0</div>
+      </header>
+
+      <section id="homeView" class="view active">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="chip">Uso personal</span>
+            <h2>Descarga contenido en la calidad que prefieras.</h2>
+            <p>Pega un enlace compatible, analiza sus formatos y guarda el archivo directamente en tu computadora.</p>
+          </div>
+
+          <form id="analyzeForm">
+            <label for="urlInput">Enlace multimedia</label>
+            <div class="url-row">
+              <input id="urlInput" type="url" placeholder="https://..." required>
+              <button id="analyzeButton" type="submit">Analizar</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="notice" class="notice hidden"></div>
+
+        <article id="mediaCard" class="media-card hidden">
+          <div class="thumbnail-wrap">
+            <img id="thumbnail" alt="">
+            <span id="duration" class="duration"></span>
+          </div>
+
+          <div class="media-info">
+            <span id="extractor" class="eyebrow">Contenido detectado</span>
+            <h3 id="mediaTitle"></h3>
+            <p id="mediaUploader"></p>
+
+            <div class="mode-tabs">
+              <button class="mode active" data-mode="video">Video</button>
+              <button class="mode" data-mode="audio">Audio MP3</button>
+            </div>
+
+            <div id="videoOptions" class="field-group">
+              <label id="formatLabel">Calidad</label>
+              <div id="formatSelect" class="custom-select">
+                <button id="formatTrigger" class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="formatLabel formatValue">
+                  <span id="formatValue">Mejor calidad disponible</span>
+                  <span class="custom-select-arrow">⌄</span>
+                </button>
+                <div id="formatMenu" class="custom-select-menu hidden" role="listbox" aria-labelledby="formatLabel"></div>
+              </div>
+            </div>
+
+            <div id="audioOptions" class="audio-note hidden">
+              Se convertirá a MP3 con la mejor calidad disponible.
+            </div>
+
+            <div class="download-actions">
+              <button id="downloadButton" class="primary-action">Descargar</button>
+              <button id="cancelButton" class="cancel-action hidden">Cancelar</button>
+            </div>
+
+            <div id="progressPanel" class="progress-panel hidden">
+              <div class="progress-head">
+                <span id="progressText">Preparando descarga...</span>
+                <span id="progressPercent">0%</span>
+              </div>
+              <div class="progress-track">
+                <div id="progressBar"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="feature-grid">
+          <article>
+            <span>01</span>
+            <h3>Rápido</h3>
+            <p>Analiza el enlace y muestra las opciones disponibles.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Local</h3>
+            <p>El procesamiento se ejecuta desde tu propia computadora.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Privado</h3>
+            <p>Tu historial permanece guardado únicamente en este dispositivo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="historyView" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Actividad local</span>
+              <h2>Historial</h2>
+            </div>
+            <button id="clearHistory" class="text-button danger">Borrar historial</button>
+          </div>
+          <div id="historyEmpty" class="empty-state">
+            <span>◷</span>
+            <h3>No hay descargas todavía</h3>
+            <p>Los archivos que descargues aparecerán aquí.</p>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </div>
+      </section>
+
+      <section id="settingsView" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Preferencias</span>
+              <h2>Ajustes</h2>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Carpeta de descargas</strong>
+              <span id="folderLabel">Usar carpeta Descargas de Windows</span>
+            </div>
+            <button id="chooseFolder" class="secondary-button">Cambiar</button>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Guardar historial</strong>
+              <span>Conservar las descargas en la aplicación.</span>
+            </div>
+            <input id="saveHistory" type="checkbox" checked>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <strong>Motor de descarga</strong>
+              <span>yt-dlp y FFmpeg deben estar disponibles en el equipo.</span>
+            </div>
+            <span class="status-badge">Local</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

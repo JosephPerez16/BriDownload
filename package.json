@@ -1,0 +1,44 @@
+{
+  "name": "bridownload",
+  "version": "1.1.0",
+  "description": "Aplicación de escritorio personal para gestionar descargas multimedia.",
+  "main": "src/main.js",
+  "author": "José Ramón Pérez Pimentel (JyB Technology Solutions SRL)",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.jyb.bridownload",
+    "productName": "BriDownload",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "extraResources": [
+      {
+        "from": "tools",
+        "to": "tools",
+        "filter": [
+          "yt-dlp.exe"
+        ]
+      }
+    ]
+  }
+}
