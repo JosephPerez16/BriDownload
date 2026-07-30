@@ -1,60 +1,92 @@
 # BriDownload
 
-Aplicación de escritorio personal creada con Electron, HTML, CSS, JavaScript, yt-dlp y FFmpeg.
+BriDownload es una aplicación de escritorio para Windows desarrollada con Electron que permite descargar contenido multimedia utilizando yt-dlp y FFmpeg.
+
+## Características
+
+- Descarga de videos.
+- Descarga de audio en MP3.
+- Vista previa del contenido.
+- Historial de descargas.
+- Selección de la carpeta de destino.
+- Interfaz sencilla y moderna.
+
+## Tecnologías
+
+- Electron
+- Node.js
+- JavaScript
+- HTML
+- CSS
+- yt-dlp
+- FFmpeg
 
 ## Requisitos
 
-- Node.js instalado.
-- npm instalado.
-- yt-dlp.exe dentro de la carpeta `tools`.
-- FFmpeg instalado en Windows.
+- Node.js
+- npm
+- FFmpeg instalado en Windows
+- `yt-dlp.exe` dentro de la carpeta `tools`
 
 ## Instalación
 
-Abre el proyecto en Visual Studio Code y ejecuta:
+Clona el repositorio:
 
-```powershell
+```bash
+git clone https://github.com/JosephPerez16/BriDownload.git
+```
+
+Instala las dependencias:
+
+```bash
 npm install
 ```
 
-Después inicia la aplicación:
+Inicia la aplicación:
 
-```powershell
+```bash
 npm start
 ```
 
-## Instalar yt-dlp
+## Generar el instalador
 
-Descarga `yt-dlp.exe` desde el repositorio oficial de yt-dlp y colócalo aquí:
-
-```text
-BriDownload/tools/yt-dlp.exe
-```
-
-## Instalar FFmpeg
-
-En PowerShell:
-
-```powershell
-winget install Gyan.FFmpeg
-```
-
-Reinicia la terminal después de instalarlo.
-
-## Generar instalador EXE
-
-```powershell
+```bash
 npm run build
 ```
 
-El instalador aparecerá dentro de:
+El instalador se generará en la carpeta:
 
 ```text
 dist/
 ```
 
+## Estructura
+
+```text
+BriDownload
+│
+├── src/
+├── tools/
+├── package.json
+├── package-lock.json
+├── README.md
+└── .gitignore
+```
+
 ## Importante
 
-- GitHub puede alojar el código fuente del proyecto.
-- GitHub Pages no puede ejecutar esta aplicación porque Electron necesita ejecutarse en la computadora.
-- Utiliza la herramienta únicamente con contenido propio, autorizado o cuya descarga esté permitida.
+Este repositorio contiene el código fuente de la aplicación.
+
+GitHub Pages no puede ejecutar aplicaciones desarrolladas con Electron, ya que estas se ejecutan directamente en el sistema operativo.
+
+Utiliza la herramienta únicamente para descargar contenido que te pertenezca o cuya descarga esté autorizada.
+
+## Licencia
+
+MIT License.
+
+## Desarrollador
+
+José Ramón Pérez Pimentel
+
+JyB Technology Solutions SRL
